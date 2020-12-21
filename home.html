@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+  <title>iTA</title>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <style>
+          @import url(https://fonts.googleapis.com/css?family=Dosis:700);
+          @import url("https://fonts.googleapis.com/css?family=Cinzel");
+          @use postcss-nested;
+
+          body {
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+                font-size: 20px;
+                font-weight: normal;
+            display: flex;
+            flex-direction: column;
+            }
+
+          h1 {
+              font-family: Cinzel;
+              text-shadow: 2px 2px white;
+              border-radius: 20%;
+              display: inline-block;
+              font-size: 2em;
+              margin: 0;
+              padding: 14px;
+          }
+
+          #chatbox {
+              margin-left: auto;
+              margin-right: auto;
+              width: 65%;
+              margin-top: 60px;
+          }
+
+          #userInput {
+              font-family: "Helvetica Neue", Helvetica, sans-serif;
+              margin-left: auto;
+              margin-right: auto;
+              width: 40%;
+              margin-top: 60px;
+          }
+
+          #textInput {
+              width: 100%;
+              border: none;
+              border-bottom: 3px solid black;
+              font-family: monospace;
+              font-size: 17px;
+          }
+
+          #tidbit {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 300px;
+          }
+          p {
+            max-width: 375px;
+            word-wrap: break-word;
+            margin-bottom: 12px;
+            line-height: 24px;
+            position:relative;
+                padding:10px 20px;
+            border-radius:25px;
+          }
+            
+          
+        .from-user {
+            margin-left: auto;
+            margin-right: 125px;
+            color:white;
+            background:#0B93F6;
+            align-self: flex-end;
+        }        
+        
+        .from-bot {
+            margin-left: 125px;
+            margin-right: auto;
+            background:#E5E5EA;
+            color:black;
+        }
+
+          .box {
+              border: 2px solid black;
+              margin-left: 175px;
+              margin-right: 175px;
+          }
+          .box-minmax {
+              margin-top: 30px;
+              width: 300px;
+              display: flex;
+              justify-content: space-between;
+              font-size: 100%;
+              color: #FFFFFF;
+          }
+
+          .container{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              flex-flow: column wrap;
+          }
+      </style>
+  </head>
+  <body onload="adjustsize()">
+      <script>
+          function adjustsize() {
+              var w = window.innerWidth;
+              if (w <= 450) {
+                  document.getElementById("myDIV").className = "boxedmobile";
+                  document.getElementById("namesDIV").className = "footmobile";
+                  document.getElementById("logoDIV").className = "footlogomobile";
+              }
+          }
+          </script>
+      <center>
+          <h1>
+              iTA: A Digital Teaching Assistant
+          </h1>
+        </center>
+      <div class="box">
+          <h5 style=" color:black; text-align:center">This is a demo of iTA which can answer detailed questions by effectively identifying the most relevant answers in “long” text sources (documents or textbooks).
+        We have used <a href = "https://www.inferentialthinking.com/chapters/intro"> The Foundations of Data Science.</a> The iTA answers questions by implementing a two-stage procedure. First, the topmost relevant paragraphs are identified in the selected text source using a retrieval-based approach and compute the scores for the retrieved paragraphs. Second, using a generative model, we extract the relevant content from the top-ranked paragraph to generate the answer. We will present and demonstrate iTA.
+        <span style="color: #ff0000">Do not be alarmed</span> if takes long time to answer as the response time is about 15 seconds.</h5>
+      </div>
+
+      <div id ="myDIV" class="boxed">
+          <div>
+              <div id="chatbox">
+                  <p class="from-bot">
+                      <span>I'm ready to answer your questions!</span>
+                  </p>
+              </div>
+              <div id="userInput">
+                  <input id="textInput" type="text" name="msg" placeholder=" Question " />
+              </div>
+          </div>
+        
+          <script>
+        function getBotResponse() {
+            var rawText = $("#textInput").val();
+            var userHtml = '<p class="from-user"><span>' + rawText + "</span></p>";
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function (data) {
+            var botHtml = '<p class="from-bot"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        $("#textInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+          </script>
+      </div>
+  </body>
+</html>
