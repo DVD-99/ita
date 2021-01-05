@@ -5,7 +5,7 @@ We have designed and implemented a question-answering chatbot, dubbed iTA (intel
 
 We have used [The Foundations of Data Science](https://www.inferentialthinking.com/chapters/intro.html) as a long text source.
 ```
-data/dataset.text
+data/dataset.txt
 ```
 
 We have adopted and adapted Simple and Effective Multi-Paragraph Reading Comprehension.
