@@ -21,4 +21,5 @@ python ~/main.py /path/to/model/directory /path/to/long_document/directory
 Open your localhost:8080 to interact with the application.
 
 Here is a Screenshot of the appilcation.
+
 ![Image of iTA Application](https://github.com/DVD-99/ita/blob/main/data/itaapp.PNG)
