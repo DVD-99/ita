@@ -14,6 +14,11 @@ cd ./document-qa
 ```
 Follow the readme to setup https://github.com/allenai/document-qa
 
+I have uploaded the pre-trained model of document-qa, located in:
+```
+document-qa/docqa/models/triviaqa-unfiltered-shared-norm/model.pkl
+```
+
 Once the setup is done! Use
 ```
 python ~/main.py /path/to/model/directory /path/to/long_document/directory
