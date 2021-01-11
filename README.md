@@ -16,6 +16,6 @@ Follow the readme to setup https://github.com/allenai/document-qa
 
 Once the setup is done! Use
 ```
-python ~/main.py /path/to/model/directory /path/to/long document/directory
+python ~/main.py /path/to/model/directory /path/to/long_document/directory
 ```
 Open your localhost:8080 to interact with the application.
