@@ -84,7 +84,7 @@ class Loading_Model():
             context = [flatten_iterable(x.text) for x in context]
 
         print("\n ---Setting up model---\n")
-        print(len(context))
+        
         # Tell the model the batch size (can be None) and vocab to expect, This will load the
         # needed word vectors and fix the batch size to use when building the graph / encoding the input
         voc = set(question)
